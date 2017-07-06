@@ -1,4 +1,5 @@
 import os
+import os.path
 import Bilingual
 import Stats
 import Hero_Tag_dicts
@@ -19,76 +20,78 @@ begin_millis = int(round(time.time() * 1000))
 #Returns an array containing all the files in folders ending with "_Parsed"
 def folder_walk():
   parsed = []
-  for subdir, dirs, files in os.walk('./'):
-    for dirname in dirs:
-      if dirname.endswith('_Parsed') or dirname.endswith('_parsed'):
-        parsed += [dirname]
+  d = os.path.abspath(os.path.join('./', os.pardir))
+  for subdir, dirs, files in os.walk(d):
+	for dirname in dirs:
+		if dirname.endswith('_Parsed') or dirname.endswith('_parsed'):
+			parsed += [dirname]
   return parsed
 
 #Game_entries is a dictionary, tag is each game id, content is dictionary where 
 #tag is player name, content is a player type
 def fill_game_entries(folders):
-  game_entries = {}
-  for p in folders: 
-    for subdir, dirs, files in os.walk('./'+p):
-      for filename in files:
-        game_entries[filename] = {}
-        onefile = open('./'+p+'/'+filename, 'r')
-        for line in onefile:
-          aslist = line.strip().split(',')
-          ### this really sucks but I can't think of a better way to do it :(
-          if aslist[0] == 'chat':
-            if aslist[2] not in game_entries[filename]:
-              game_entries[filename][aslist[2]] = Bilingual.Player({}, {'eng': 0, 'spn': 0, 'dota': 0, 'uncat': 0}, "nolang")
-            else:
-              game_entries[filename][aslist[2]].c[aslist[1]] = aslist[3]
-  return game_entries
+	game_entries = {}
+	d = os.path.abspath(os.path.join('./', os.pardir))
+	for p in folders:
+		for subdir, dirs, files in os.walk(d+'\\'+p):
+			for filename in files:
+				game_entries[filename] = {}
+				onefile = open(d+'\\'+p+'/'+filename, 'r')
+				for line in onefile:
+					aslist = line.strip().split(',')
+					### this really sucks but I can't think of a better way to do it :(
+					if aslist[0] == 'chat':
+						if aslist[2] not in game_entries[filename]:
+							game_entries[filename][aslist[2]] = Bilingual.Player({}, {'eng': 0, 'spn': 0, 'dota': 0, 'uncat': 0}, "nolang")
+						else:
+							game_entries[filename][aslist[2]].c[aslist[1]] = aslist[3]
+	return game_entries
 
 def lang_profiles(entries):
   for game in entries:
    for hero in entries[game]:
-    for chat in entries[game][hero].c:
-      Bilingual.create_lang_profiles(entries[game][hero], entries[game][hero].c[chat])
+	for chat in entries[game][hero].c:
+	  Bilingual.create_lang_profiles(entries[game][hero], entries[game][hero].c[chat])
 
 ### This is a function that looks in various dictionaries (English monolingual 
 ## and Spanish monolingual). You put the word you want to search for in this form
 ## '[word]' as the input to the function and it returns a count for that word in each dict.  
 def search_for_word(searchword, mono_spn_wthCounts, mono_eng_wthCounts, complete_wthCounts, totals):
   for (c,w) in mono_spn_wthCounts:
-    if w == searchword:
-      print('number of times %s is said in Spanish: ' % searchword + str(c))
-      print ('%s makes up ' % searchword + str(100 * (float("{0:.4f}".format(float(c) / float(totals['spn']))))) + '% of the total spanish tokens')
+	if w == searchword:
+	  print('number of times %s is said in Spanish: ' % searchword + str(c))
+	  print ('%s makes up ' % searchword + str(100 * (float("{0:.4f}".format(float(c) / float(totals['spn']))))) + '% of the total spanish tokens')
   for (c,w) in mono_eng_wthCounts:
-    if w == searchword:
-      print ('number of times %s is said in English: ' % searchword + str(c))
-      print ('%s makes up ' % searchword + str(100 * (float("{0:.4f}".format(float(c) / float(totals['eng']))))) + '% of the total English tokens')     
+	if w == searchword:
+	  print ('number of times %s is said in English: ' % searchword + str(c))
+	  print ('%s makes up ' % searchword + str(100 * (float("{0:.4f}".format(float(c) / float(totals['eng']))))) + '% of the total English tokens')     
   for (c,w) in complete_wthCounts:
-    if w == searchword:
-      print ('number of times %s is said overall: ' % searchword + str(c))
-      print ('%s makes up ' % searchword + str(100 * (float("{0:.4f}".format(float(c) / float(totals['total']))))) + '% of the total tokens')
+	if w == searchword:
+	  print ('number of times %s is said overall: ' % searchword + str(c))
+	  print ('%s makes up ' % searchword + str(100 * (float("{0:.4f}".format(float(c) / float(totals['total']))))) + '% of the total tokens')
 
 ##Finds and prints all chats in category containing "lang" (so you can print all
 ## entries categorized as "english" with spanish or dota words. Set as "total" to 
 ## get all the chats)
 def print_chats(entries, lang):
   for item in entries:
-    if lang == "total" or item.lp[lang] > 0:
-      for chat in item.c:
-        print(item.c[chat])
+	if lang == "total" or item.lp[lang] > 0:
+	  for chat in item.c:
+		print(item.c[chat])
 
 #Prints the language of all the players in a list of games
 def print_speaker_makeup(entries):
   for game in entries:
-    print(game)
-    # print(game + ":")
-    # sys.stdout.write(entries[game][player].lang + " ")
-    # print("")
+	print(game)
+	# print(game + ":")
+	# sys.stdout.write(entries[game][player].lang + " ")
+	# print("")
 
 def total_chats(entries):
   total = 0
   for game in entries:
-    for hero in entries[game]:
-      total += len(entries[game][hero].c)
+	for hero in entries[game]:
+	  total += len(entries[game][hero].c)
   return total
 
 ##Main method
@@ -117,13 +120,13 @@ def main(argv):
   opts, args = getopt.getopt(argv, "w:n:")
   top_N = 200
   for opt, arg in opts:
-    if opt == "-n":
-      top_N = int(arg)
-    if opt == "-w":
-      spn_dict = Stats.find_top_N_words(spn_lang_entries, top_N, "spanish")
-      eng_dict = Stats.find_top_N_words(eng_lang_entries, top_N, "english")
-      total_dict = Stats.find_top_N_words(total_lang_entries, top_N, "total")
-      search_for_word(arg, spn_dict, eng_dict, total_dict, word_totals)
+	if opt == "-n":
+	  top_N = int(arg)
+	if opt == "-w":
+	  spn_dict = Stats.find_top_N_words(spn_lang_entries, top_N, "spanish")
+	  eng_dict = Stats.find_top_N_words(eng_lang_entries, top_N, "english")
+	  total_dict = Stats.find_top_N_words(total_lang_entries, top_N, "total")
+	  search_for_word(arg, spn_dict, eng_dict, total_dict, word_totals)
 
 
   ##Other required variables
@@ -282,12 +285,12 @@ if __name__ == "__main__" : main(sys.argv[1:])
 #   for hero in h:
 #     compare_hero_tag[hero+'- '+t] = "{0:.2f}".format(float(average_by_hero[hero]) - float(average_by_tag[t]))
 
-    
+	
 # compare_tag_hero = {}
 # for t,h in tag_dict.items():
 #   for hero in h:
 #     compare_tag_hero[t+'- '+hero] = "{0:.2f}".format(float(average_by_hero[hero]) - float(average_by_tag[t]))
-    
+	
 # compare_hero_tag_keys = sorted(compare_hero_tag.keys())   
 # compare_tag_hero_keys = sorted(compare_tag_hero.keys())
 ####COMMENTED OUT WHILE I'M FIXING LENGTH SHIT 
