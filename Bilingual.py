@@ -11,7 +11,9 @@ english = 'english'
 #how many words in a given language were said by that player, in the form
 #[English, Spanish, DoTA, uncategorized]
 class Player():
-    def __init__(self, chat, lang_profile, l):
+    def __init__(self, g, n, chat, lang_profile, l):
+      self.game = g #game of hero
+      self.name = n
       self.c = chat #Dict of chats. Tag is timestamp, content is chat content
       self.lp = lang_profile 
       self.lang = l #Language probably spoken by this player
@@ -63,15 +65,18 @@ def create_lang_profiles(hero, chat):
   ##Should go in own function
   if hero.lp['spn'] > 0:
     if hero.lp['eng'] > 0:
-      bilingual_percent = bilingual_percentages(hero.lp)
-      if bilingual_percent < 0.1:
-        if bilingual_percent > 0.01:
+      if hero.lp['spn'] > 3:
+        if hero.lp['eng'] > 4:
           hero.lang = "bilingual"
         else: 
           hero.lang = "spn"
+      if hero.lp['eng'] > 4:
+        print(hero.game + " " +  hero.name)
+        hero.lang = "eng"
       else:
-        hero.lang = 'eng'
-    else: hero.lang = "spn"
+        hero.lang = "bilingual"
+    else: 
+      hero.lang = "spn"
   elif hero.lp["eng"] > 0:
     hero.lang = "eng"
   elif hero.lp["dota"] > 0:
@@ -143,7 +148,7 @@ def get_entries(classified_entries, *langs):
   for game in classified_entries[init_lang]:
     add_game = True
     for lang in classified_entries:
-      if lang in langs:
+      if lang in lang_list:
         if game not in classified_entries[lang]:
           add_game = False
       elif game in classified_entries[lang] and lang != "unknown" and lang != "nolang":

@@ -42,7 +42,7 @@ def fill_game_entries(folders):
 					### this really sucks but I can't think of a better way to do it :(
 					if aslist[0] == 'chat':
 						if aslist[2] not in game_entries[filename]:
-							game_entries[filename][aslist[2]] = Bilingual.Player({}, {'eng': 0, 'spn': 0, 'dota': 0, 'uncat': 0}, "nolang")
+							game_entries[filename][aslist[2]] = Bilingual.Player(filename, aslist[2], {}, {'eng': 0, 'spn': 0, 'dota': 0, 'uncat': 0}, "nolang")
 						else:
 							game_entries[filename][aslist[2]].c[aslist[1]] = aslist[3]
 	return game_entries
@@ -106,9 +106,9 @@ def main(argv):
   eng_lang_entries = Bilingual.get_players(entries, 'eng')
   bilingual_lang_entries = Bilingual.get_players(entries, 'bilingual')
   dota_lang_entries = Bilingual.get_players(entries, 'dota')
- 
+
   #Prints out instances of code-switching w/in the same line
-  # Bilingual.single_line_switch(total_lang_entries)
+  #Bilingual.single_line_switch(total_lang_entries)
 
   ##Totals
   speaker_counts = Bilingual.get_total_speaker_count(entries)
@@ -232,12 +232,11 @@ def main(argv):
   ### GAMES BY LANGUAGE #
   #######################
   #print('English games: ' + str(Bilingual.get_entries(classified_entries, "eng")))
-  Eng_n_spn = Bilingual.get_entries(classified_entries, "eng", "spn")
-  print('English and Spanish only: ' + str(Eng_n_spn))
-  #print('----------------------------------------')
- # print('Bilingual only: ' + str(Bilingual.get_entries(classified_entries, "bilingual")))
-  print_speaker_makeup(Eng_n_spn)
-
+  # Eng_n_spn = Bilingual.get_entries(classified_entries, "eng", "spn")
+  # print('English and Spanish only: ' + str(Eng_n_spn))
+  #print('----------------------------------------'
+  # print('Bilingual only: ' + str(Bilingual.get_entries(classified_entries, "bilingual")))
+  #print_speaker_makeup(Eng_n_spn)
 
   ##########################
   ## CHAT AND GAME COUNTS ##
@@ -265,6 +264,18 @@ def main(argv):
   ############
   # print("Total mentions of kda in English:" + str(prestige.ex_amounts(eng_lang_entries, '\d+/\d+')))
   # print("Total mentions of mmr in English:" + str(prestige.ex_amounts(eng_lang_entries, '\d0{3}|\dk')))
+
+  ###############
+  ## OLD WORDS ##
+  ###############
+  prestige_dict = Hero_Tag_dicts.old_names + Hero_Tag_dicts.old_items
+  print("Total mentions of old names in English:" + str(prestige.find_words(eng_lang_entries, prestige_dict)))
+  print(" ")
+  print("Total mentions of old names in Bilingual:" + str(prestige.find_words(bilingual_lang_entries, prestige_dict)))
+  print(" ")
+  print("Total mentions of old names in DOTA:" + str(prestige.find_words(dota_lang_entries, prestige_dict)))
+  print("")
+  print("Total mentions of old names in Spanish:" + str(prestige.find_words(spn_lang_entries, prestige_dict)))
 
 if __name__ == "__main__" : main(sys.argv[1:])
   
