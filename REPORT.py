@@ -108,7 +108,7 @@ def main(argv):
   dota_lang_entries = Bilingual.get_players(entries, 'dota')
 
   #Prints out instances of code-switching w/in the same line
-  #Bilingual.single_line_switch(total_lang_entries)
+  Bilingual.single_line_switch(total_lang_entries)
 
   ##Totals
   speaker_counts = Bilingual.get_total_speaker_count(entries)
@@ -200,9 +200,9 @@ def main(argv):
   #####################
   ## TOP WORDS INFO ###
   #####################
-  ###This section of reporting gives you the most frequent words for each 
-  ###category of speaker Total, English, Spanish, bilingual, Dota
-  # top_N = 50
+  # This section of reporting gives you the most frequent words for each 
+  # category of speaker Total, English, Spanish, bilingual, Dota
+  # top_N = 1000
   # print('DATA FOR ALL SPEAKERS')
   # print('cutoff N =',top_N)
   # def print_top_words(lang_entries, top_N, lang):
@@ -213,9 +213,9 @@ def main(argv):
   #     sys.stdout.write("', ")
   #     sys.stdout.write(str(w))
   #     sys.stdout.write(") ")
-  # NOTE: Third parameter is the full name of the lang, not "spn", "eng", etc.
+  # # NOTE: Third parameter is the full name of the lang, not "spn", "eng", etc.
   # print('Top words in English:')
-  # print_top_words(eng_lang_entries, top_N, "english")
+  # print_top_words(total_lang_entries, top_N, "total")
 
   ####################
   ## CHAT PRINTING ###
@@ -268,14 +268,28 @@ def main(argv):
   ###############
   ## OLD WORDS ##
   ###############
-  prestige_dict = Hero_Tag_dicts.old_names + Hero_Tag_dicts.old_items
-  print("Total mentions of old names in English:" + str(prestige.find_words(eng_lang_entries, prestige_dict)))
-  print(" ")
-  print("Total mentions of old names in Bilingual:" + str(prestige.find_words(bilingual_lang_entries, prestige_dict)))
-  print(" ")
-  print("Total mentions of old names in DOTA:" + str(prestige.find_words(dota_lang_entries, prestige_dict)))
-  print("")
-  print("Total mentions of old names in Spanish:" + str(prestige.find_words(spn_lang_entries, prestige_dict)))
+  # prestige_dict = Hero_Tag_dicts.old_names + Hero_Tag_dicts.old_items
+  # print("Total mentions of old names in English:" + str(prestige.find_words(eng_lang_entries, prestige_dict)))
+  # print(" ")
+  # print("Total mentions of old names in Bilingual:" + str(prestige.find_words(bilingual_lang_entries, prestige_dict)))
+  # print(" ")
+  # print("Total mentions of old names in DOTA:" + str(prestige.find_words(dota_lang_entries, prestige_dict)))
+  # print("")
+  # print("Total mentions of old names in Spanish:" + str(prestige.find_words(spn_lang_entries, prestige_dict)))
+
+  #################
+  ## TAG REPORTS ##
+  #################
+  top_N = 18
+  total_dict = Stats.find_top_N_words(total_lang_entries, top_N, "total")
+  tag_list = ['carry', 'disabler', 'durable', 'escape', 'initiator', 'jungler',  'melee',  'nuker', 'pusher', 'ranged', 'support']
+  lst = hero.create_list(tag_list, h_stats, total_dict)
+  print 'this is the tag report'
+  hero.tag_hero_report(lst, total_dict)
+  print 'this is the hero report'
+  hero_tag_hero_report(lst, total_dict)
+
+
 
 if __name__ == "__main__" : main(sys.argv[1:])
   

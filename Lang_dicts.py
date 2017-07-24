@@ -9,215 +9,114 @@ spanish = 'spanish'
 unclear = 'unclear'
 english = 'english'
 
-lang_index = {}
-lang_index['gg'] = dota
-lang_index['lol'] = dota
-lang_index['ez'] = dota
-lang_index['report'] = dota
-lang_index['no'] = unclear
-lang_index['a'] = unclear
-lang_index['me'] = unclear
-lang_index['?'] = dota
-lang_index['you'] = english
-lang_index['de'] = spanish
-lang_index['i'] = english
-lang_index['GG'] = dota
-lang_index['team'] = dota
-lang_index['mid'] = dota
-lang_index['que'] = spanish
-lang_index['wp'] = dota
-lang_index['xd'] = dota
-lang_index['is'] = english
-lang_index['u'] = english
-lang_index[':v'] = dota
-lang_index['jaja'] = spanish
-lang_index['the'] = english
-lang_index['la'] = spanish
-lang_index['to'] = english
-lang_index['XD'] = dota
-lang_index['el'] = spanish
-lang_index['y'] = unclear
-lang_index['es'] = unclear
-lang_index['q'] = unclear
-lang_index['game'] = dota
-lang_index['xD'] = dota
-lang_index['te'] = spanish
-lang_index['and'] = english
-lang_index['pls'] = dota
-lang_index['this'] = english
-lang_index['for'] = english
-lang_index['noob'] = dota
-lang_index['mi'] = spanish
-lang_index['tu'] = spanish
-lang_index['EZ'] = dota
-lang_index['LOL'] = dota
-lang_index['my'] = english
-lang_index['commend'] = dota
-lang_index['haha'] = dota
-lang_index['ty'] = dota
-lang_index['se'] = spanish
-lang_index['rata'] = dota
-lang_index['nice'] = english
-lang_index['si'] = spanish
-lang_index['so'] = english
-lang_index['ya'] = unclear
-lang_index['just'] = english
-lang_index['that'] = english
-lang_index['mrd'] = spanish
-lang_index['please'] = unclear
-lang_index['it'] = english
-lang_index['pudge'] = dota
-lang_index['mierda'] = spanish
-lang_index['por'] = spanish
-lang_index[':V'] = dota
-lang_index['ese'] = spanish
-lang_index[':D'] = dota
-lang_index['fuck'] = dota
-lang_index['ok'] = dota
-lang_index['in'] = english
-lang_index['I'] = english
-lang_index['jajaja'] = spanish
-lang_index['1'] = unclear
-lang_index['ggwp'] = dota
-lang_index['we'] = english
-lang_index['con'] = spanish
-lang_index['go'] = english
-lang_index['comend'] = dota
-lang_index['NO'] = unclear
-lang_index['un'] = spanish
-lang_index['pa'] = unclear
-lang_index['Ez'] = dota
-lang_index['en'] = spanish
-lang_index['he'] = unclear
-lang_index['was'] = english
-lang_index['2'] = unclear
-lang_index['are'] = english
-lang_index['invoker'] = dota
-lang_index['im'] = english
-lang_index['your'] = english
-lang_index['all'] = english
-lang_index['REPORT'] = dota
-lang_index['not'] = english
-lang_index['lo'] = spanish
-lang_index['kill'] = dota
-lang_index['slark'] = dota
-lang_index['wtf'] = dota
-lang_index['what'] = english
-lang_index['dont'] = english
-lang_index['have'] = english
-lang_index['solo'] = unclear
-lang_index['guys'] = english
-lang_index['shit'] = english
-lang_index['going'] = english
+
+
+lang_index = {'gg': dota, 'ez': dota, 'lol': dota, 'xd': dota, 'i': english, 'no': unclear, 'report': dota, 'a': unclear, 'you': english, 'me': unclear, 'mid': dota, '?': dota, 'u': english, 'de': spanish, 'team': dota,
+			'is': english, 'to': english, 'the': english, 'and': english, 'que': spanish, ':v': dota, 'end': dota, 'this': english, 'wp': dota, 'game': dota, 'for': english, 'so': english, 'el': spanish, 'la': spanish, 
+			'my': english, 'y': unclear, 'q': unclear, 'haha': english, 'jaja': spanish, 'es': unclear, 'that': english, 'just': english, 'it': english, 'dont': english, 'pls': unclear, 'go': english, 'im': english, 
+			'noob': dota, 'all': english, 'he': unclear, 'ty': english, 'fuck': unclear, 'we': unclear, 'in': english, 'te': spanish, 'tu': spanish, 'not': english, 'ok': unclear, 'nice': unclear, 'ya': unclear, 'mi': spanish,
+			'se': unclear, 'si': spanish, '1': unclear, 'commend': dota, 'pa': unclear, 'kill': dota, 'have': english, 'please': english, 'of': english, 'are': english, 'pudge': dota, 'your': english, 'what': english, 
+			'por': spanish, 'mierda': spanish, 'ese': spanish, 'fucking': english, 'con': spanish, 'shit': dota, '2': unclear, 'was': english, 'why': english, 'ur': english, 'wtf': dota, 'rata': dota, 'can': english, 
+			'do': english, 'on': english, 'guys': english, 'am': english, 'good': english, 'en':spanish, 'like': english, 'mrd': spanish, 'get': english, 'jajaja':spanish, 'un': spanish, 'lmao': dota, '3': unclear, 
+			':d': dota, 'comend': dota, 'ggwp': dota, 'invoker': dota, 'its': english, 'done': english, 'feed': dota, 'quest': dota, 'solo': unclear, 'lo': spanish, 'how': english, 'with': english, 'got': english, 'dota': dota,
+			'more': english, 'di': spanish, 'come': english, 'one': english, 'push': dota, 'mas': spanish, 'k': unclear, 'plz': unclear, 'at': english, 'hahaha': english, 'win': dota, '5': unclear, 'axe': dota, 
+			'yo': spanish, 'if': english, 'cant': english, 'slark': dota, 'need': english, 'bad': english, 'be': english, 'rofl': unclear, 'para': spanish, 'man': english, 'yeah': english, 'fast': english, 'will': english,
+			'too': english, 'play': english, ':)': dota, 'al': spanish, 'but': english, 'carry': dota, '4': unclear, 'una': spanish, 'top': dota, 'know': english, 'ursa': dota, 'did': english, 'asco': spanish, 'up': english,
+			'him': english, 'pro': dota, 'sniper': dota, 'como': spanish, 'ward': dota, 'eso': spanish, 'esta': spanish, ':(': dota, 'ni': spanish, 'bot': english, 'eres': spanish, 'izi': dota, 'g': unclear, 'esa': spanish, 
+			'time': english, 'hes': english, 'thats': english, 'now': english, 'low': english, 'los': spanish, 'legion': dota, 'see': english, 'farm': dota, 'base': unclear, 'easy': english, 'wait': english, 'as': english, 
+			'??': dota, 'they': english, 't': unclear, 'son': unclear, 'vs': dota, 'still': english, 'us': english, 'sf': dota, 'oh': english, 'na': unclear, 'support': dota, 'ratas': spanish, 'dude': english, 'min': dota, 
+			'lc': dota, 'd': unclear, 'even': english, '1k': dota, 'our': english, 'tinker': dota, 'yes': english, 'sorry': unclear, 'or': english, 'afk': dota, 'well': english, 'sin': spanish, 'le': spanish, 'didnt': english, 
+			'run': english, 'only': english, 'leave': english, 'retard': english, 'back': english, 'luna': dota, 'bitch': english, 'sven': dota, 'riki': dota, 'out': english, 'o': unclear, 'wards': dota, 'then': english, 
+			'lina': dota, 'su': spanish, 'who': english, 'jajaj': spanish, 'pero': spanish, 'e': unclear, 'gold': dota, 'first': english, 'when': english, 'sure': english, 'stop': english, 'want': english, 'noobs': dota, 
+			'tower': dota, 'let': english, 'lul': dota, 'les': spanish, 'wow': unclear, 'there': english, 'really': english, 'troll': dota, 'puta': spanish, 'peru': unclear, 'trash': english, 'ko': dota, 'blood': dota, 'gw': dota,
+			'very': english, 'mmr': dota, 'ill': english, 'his': english, 'da': spanish, 'much': english, 'off': dota, 'lion': dota, 'has': english, 'thanks': english, 'x': unclear, 'del': spanish, 'alche': dota, '6': unclear,
+			'todo': spanish, 'necro': dota, 'bye': unclear, 'bro': english, 'an': english, 'think': english, 'pick': english, 'last': english, 'jajajaja': spanish, 'asi': spanish, 'youre': english, 'storm': dota, 'rampage': dota,
+			'r': unclear, 'life': english, 'had': english, 'were': english, 'nada': spanish, 'ass': english, 'ulti': dota, 'take': english, 'mirana': dota, 'las': spanish, 'hit': dota, 'here': english, 'lost': english, 'gay': unclear,
+			'timber': dota, 'kk': dota, 'mad': english, 'hard': english, 'cho': unclear, '10': unclear, 'drow': dota, 'use': unclear, 'lvl': dota, 'jungle': dota, ':c': dota, 'hero': dota, 'help': english, 'buy': english, 
+			'bien': spanish, 'aja': spanish, 'xong': unclear, 'tiny': dota, 'invo': dota, 'dc': dota, 'ra': dota, 'jugar': spanish, 'calla': spanish, 'void': dota, 'plis': dota, 'pe': dota, 'fue': spanish, 'idiot': english, 
+			'gege': unclear, 'bane': dota, ':3': dota, 'viper': dota, 'stupid': english, 'reporten': spanish, 'kunkka': dota, 'lag': dota, 'give': english, 'fun': english, 'about': english, 'ta': unclear, 'suck': english,
+			'peruvian': english, 'omg': dota, 'from': english, 'p': unclear, 'hi': english, 'dice': spanish, 'love': english, 'hijo': spanish, 'todos': spanish, 'never': english, 'gonna': english, 'them': english, 'tengo': spanish,
+			'skill': english, 'perra': spanish, 'm': unclear, 'lel': dota, 'lane': dota, 'wk': dota, 'ult': dota, 'ember': dota, 'doesnt': english, 'stfu': dota, 'ma': unclear, 'die': english, '2k': dota, 'reported': english, 
+			'perder': spanish, 'doing': english, 'day': english, 'again': english, 'than': english, 'some': english, 'free': english, 'basura': spanish, 'worth': english, 'np': english, 'hahahaha': english, 'best': english,
+			'say': english, 'ogre': dota, 'mana': dota, 'lam': dota, 'finish': english, 'lmfao': dota, 'kunka': dota, 'caca': spanish, 'soy': spanish, 'rat': english, 'oe': unclear, 'mean': english, 'jugg': dota, 'estas': spanish,
+			'nah': english, 'co': unclear, 'where': english, 'suport': dota, 'real': unclear, 'next': english, 'items': english, 'ff': dota, 'este': spanish, 'dk': dota, 'tide': dota, 'reprot': dota, 'nomas': spanish, 
+			'gente': spanish, 'cai': unclear, 'stun': english, 'said': english, 'recomend': dota, 'lose': english, 'english': english, 'already': english, 'yea': english, 'try': english, 'sad': english, 'over': english, 
+			'make': english, 'going': english, 'shut': english, 'igual': spanish, 'hay': spanish, 'creep': english, 'should': english, 'down': english, '0': unclear, '...': dota, 'quit': dota, 'look': english, 'feeding': english,
+			'entren': spanish, 'def': unclear, 'better': english, 'silencer': dota, 'right': english, 'retarded': english, 'od': unclear, 'mua': unclear, 'hey': english, 'ezz': dota, 'damage': english, 'peruvians': english,
+			'mo': unclear, 'keep': english, 'ka': unclear, 'by': english, 'bs': english, 'after': english, 'ti': spanish, 'ps': unclear, 'playing': english, 'manco': unclear, 'lagi': unclear, 'huskar': unclear, 'dah': unclear,
+			'cuando': spanish, 'ctm': spanish, ':o': dota, 'tiene': spanish, 'techies': english, 'sb': unclear, 'gua': unclear, 'god': english, 'estoy': spanish, 'cm': unclear, 'because': english, 'quien': spanish, 'player': english,
+			'may': english, 'games': english, 'damn': english, 'chua': unclear, 'bb': unclear, 'bara': unclear, 'xdd': dota, 'weaver': dota, 'thx': dota, 'shadow': dota, '<3': dota, '20': unclear, 'zeus': dota, 'tho': english,
+			'morph': dota, 'hahah': english, 'gj': unclear, 'ganar': spanish, 'ada': unclear, '+': dota, 'nothing': english, 'level': english, 'item': dota, 'dumb': english, 'been': english, '???': dota, '!': dota, 'sec': unclear, 
+			'puck': dota, 'nyx': dota, 'kills': english, 'hook': english, 'gracias': spanish, 'dead': english, 'actually': english, '4k': dota, 'wage': english, 'same': english, 'nope': english, 'muere': spanish, 'left': english,
+			'dust': dota, 'wont': english, 'voltis': dota, 'omni': dota, 'mono': unclear, 'mom': english, 'lucky': english, 'lg': unclear, 'creeps': english, 'close': english, 'bkb': unclear}
 
 
 
-#Next 100
-#These havent been put in the right category yet, TBD
-lang_index['shit'] = dota
-lang_index['of'] = english
-lang_index['can'] = english
-lang_index['shit'] = dota
-lang_index['why'] = english
-lang_index['solo'] = unclear
-lang_index['lmao'] = dota
-lang_index['pa'] = dota
-lang_index['REPORT'] = dota
-lang_index['shit'] = dota
-lang_index['kill'] = dota
-lang_index['have'] = english
-lang_index['good'] = english
-lang_index['al'] = unclear
-lang_index['on'] = english
-lang_index['like'] = english
-lang_index['axe'] = dota
-lang_index[':)'] = dota
-lang_index['para'] = spanish
-lang_index['yo'] = unclear
-lang_index['mas'] = spanish
-lang_index['dota'] = dota
-lang_index['fucking'] = dota
-lang_index['k'] = unclear
-lang_index['Gg'] = dota
-lang_index['3'] = unclear
-lang_index['??'] = dota
-lang_index['legion'] = dota
-lang_index[':('] = dota
-lang_index['ur'] = english
-lang_index['asco'] = spanish
-lang_index['de'] = spanish
-lang_index['esta'] = spanish
-lang_index['A'] = unclear
-lang_index['Xd'] = dota
-lang_index['win'] = dota
-lang_index['ni'] = unclear
-lang_index['with'] = english
-lang_index['ursa'] = dota
-lang_index['carry'] = dota
-lang_index['know'] = english
-lang_index['izi'] = dota
-lang_index['plz'] = dota
-lang_index['5'] = unclear
-lang_index['una'] = spanish
-lang_index['pro'] = dota
-lang_index['los'] = spanish
-lang_index['feed'] = dota  # This might be a dota word
-lang_index['how'] = english
-lang_index['vs'] = dota
-lang_index['get'] = english
-lang_index['at'] = english
-lang_index['ME'] = unclear
-lang_index['ratas'] = spanish
-lang_index['di'] = spanish
-lang_index['bot'] = dota
-lang_index['QUE'] = spanish
-lang_index['too'] = english
-lang_index['sniper'] = dota
-lang_index['one'] = english
-lang_index['do'] = unclear
-lang_index['como'] = spanish
-lang_index['but'] = english
-lang_index['yeah'] = unclear
-lang_index['jajaj'] = unclear
-lang_index['hahaha'] = unclear
-lang_index['did'] = english
-lang_index['LINEASSSSS'] = unclear
-lang_index['if'] = english
-lang_index['come'] = unclear
-lang_index['esa'] = spanish
-lang_index['support'] = dota
-lang_index['puta'] = spanish
-lang_index['easy'] = dota
-lang_index['sin'] = unclear
-lang_index['eres'] = spanish
-lang_index['EL'] = spanish
-lang_index['son'] = unclear
-lang_index['bad'] = dota
-lang_index['TEAM'] = dota
-lang_index['4'] = unclear
-lang_index['Q'] = unclear
-lang_index['done'] = english
-lang_index['rofl'] = dota
-lang_index['pero'] = spanish
-lang_index['lag'] = dota
-lang_index['eso'] = spanish
-lang_index['be'] = english
-lang_index[':3'] = dota
-lang_index['top'] = dota
-lang_index['le'] = dota
-lang_index['got'] = english
-lang_index['low'] = dota
-lang_index['its'] = english
-lang_index['su'] = spanish
-lang_index['really'] = english
-lang_index['push'] = dota
-lang_index['plis'] = unclear
-lang_index['da'] = unclear
-lang_index['up'] = english
-lang_index['JAJA'] = unclear
-lang_index['very'] = english
-lang_index['ulti'] = dota
-lang_index['need'] = english
-lang_index['d'] = unclear
-lang_index['WP'] = dota
-lang_index['mid'] = dota
+# Check:
+# gua
+# bkb
+# sorry
+# mono
+# lg
+# gj
+# cm
+# bb
+# bara
+#chua
+# min
+# manco
+# techies
+# sb
+# ada
+# ka 
+# mo
+# od
+# mua
+# item/s
+# cai
+# lagi
+# dah
+# ratas
+# da
+# sorry
+# game
+# dota
+# bane
+# def
+# ra
+# q
+# laughter
+#tide
+# dk 
+# lam
+#np
+# su
+# cai
+# alche
+# ta
+# ty
+# nice
+# co
+# ya
+# life# good/bad
+# pa
+# run
+# da
+# please
+# solo
+# bane
+# bot
+# sorry
+# na
+# d
+# afk
+# yo
+# t
+# farm
+# use
+# low
+# cho
+# pe
+# xong
+
+

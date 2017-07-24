@@ -24,12 +24,6 @@ def fill_words(entries):
             complete_dict[word] += 1
   return complete_dict
 
-def counts(dictionary):
-  wthCounts = []
-  for(w, c) in list(dictionary.items()):
-    complete_wthCounts += [(c, w)]
-  return wthCounts
-
 ##Lang Dictionary
 class Lang_Dictionary():
     def __init__(self, dictionary, lang):
@@ -52,13 +46,12 @@ def find_top_N_words(lang_entries, top_N, lang):
         line = line.replace('"', '')
         if len(line) > 0:
           ##INEFFICIENT - looking through dictionary each time?
-          if line not in dictionary.d:
-            dictionary.d[line] = 0
-          dictionary.d[line] += 1
+          if line.lower() not in dictionary.d:
+            dictionary.d[line.lower()] = 0
+          dictionary.d[line.lower()] += 1
   ###wthCounts is a list of the word and its count 
   wthCounts = []
   for(w,c) in dictionary.d.iteritems():
-    ##Getting a ValueError here
     wthCounts += [(c,w)]
   ##wc is the wthCounts list only sorted
   wc = sorted(wthCounts, reverse=True)

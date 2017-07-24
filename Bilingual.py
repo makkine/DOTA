@@ -29,8 +29,8 @@ def single_line_switch(entries):
       newlist = player.c[chat].strip().split(' ')
       newlist = [x.strip("''") for x in newlist]
       for word in newlist:
-        if word in Lang_dicts.lang_index:
-          w_lang = Lang_dicts.lang_index[word]
+        if word.lower() in Lang_dicts.lang_index:
+          w_lang = Lang_dicts.lang_index[word.lower()]
           if w_lang == english:
             if lang == "unknown" or lang == "english":
               lang = "english"
@@ -50,10 +50,10 @@ def create_lang_profiles(hero, chat):
   newlist = chat.strip().split(' ')
   newlist = [x.strip("''") for x in newlist]
   for word in newlist:
-    if word not in Lang_dicts.lang_index:
+    if word.lower() not in Lang_dicts.lang_index:
       hero.lp['uncat'] += 1
     else:
-      word = Lang_dicts.lang_index[word]
+      word = Lang_dicts.lang_index[word.lower()]
       if word == english:
         hero.lp['eng'] += 1
       elif word == spanish:
@@ -71,7 +71,8 @@ def create_lang_profiles(hero, chat):
         else: 
           hero.lang = "spn"
       if hero.lp['eng'] > 4:
-        print(hero.game + " " +  hero.name)
+        #### PRINTS ENG GAMES W SPANISH IN THEM
+        ##print(hero.game + " " +  hero.name)
         hero.lang = "eng"
       else:
         hero.lang = "bilingual"
