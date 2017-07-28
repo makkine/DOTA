@@ -5,9 +5,9 @@ import Hero_Tag_dicts
 # We should be able to compare a hero word freq. against a total
 # It would be cool to: compare a hero's word freq. with a tags word freq 
 
-
-##########################################
-## DOESN'T MATCH OLD VALUES - STILL IN DEBUGGING!!!! AVOID USE FOR THE TIME BEING
+insults = ['ez', 'noob', 'rata', 'rat', 'perra', 'peruano', 'peruana', 'report']
+emoticons = [':)', ':(',">:("]
+slurs = []
 
 class Hero():
 	def __init__(self, a, l, nc, c):
@@ -23,7 +23,7 @@ class Tag():
 		self.length = l
 		self.n_chats = nc
 
-#Returns the total words spoken in all the chats of a Player type. 
+#Returns the total words spoken in all the chats of a Player type.
 def lp_sum(player):
 	total = 0
 	for lang in player.lp:
@@ -31,10 +31,10 @@ def lp_sum(player):
 	return total
 
 # Creates an dict of Hero classes and initializes their average, length
-# and chat_n fields. Length contains the total length of chats spoken by the 
-# hero, average is the average length of the hero's chats, and chat_n is the 
+# and chat_n fields. Length contains the total length of chats spoken by the
+# hero, average is the average length of the hero's chats, and chat_n is the
 # number of chats. dict tags are the hero names
-# Also initializes their chats. 
+# Also initializes their chats.
 # 'npc_dota_hero_Skrillex' is a catch-all for all chats by all heroes
 def hero_stats(entries):
 	heroes = {}
@@ -49,17 +49,17 @@ def hero_stats(entries):
 			heroes["npc_dota_hero_Skrillex"].length += lp_sum(entries[game][player])
 			heroes["npc_dota_hero_Skrillex"].n_chats += len(entries[game][player].c)
 			for chat in entries[game][player].c:
-					newlist = entries[game][player].c[chat].strip().split(' ')
-					newlist = [x.strip("''") for x in newlist]
-					for word in newlist:
-						if word in heroes[player].chats:
-							heroes[player].chats[word] += 1
-						else:
-							heroes[player].chats[word] = 1
-						if word in heroes["npc_dota_hero_Skrillex"].chats:
-							heroes["npc_dota_hero_Skrillex"].chats[word] += 1
-						else:
-							heroes["npc_dota_hero_Skrillex"].chats[word] = 1
+				newlist = entries[game][player].c[chat].strip().split(' ')
+				newlist = [x.strip("''") for x in newlist]
+				for word in newlist:
+					if word in heroes[player].chats:
+						heroes[player].chats[word] += 1
+					else:
+						heroes[player].chats[word] = 1
+					if word in heroes["npc_dota_hero_Skrillex"].chats:
+						heroes["npc_dota_hero_Skrillex"].chats[word] += 1
+					else:
+						heroes["npc_dota_hero_Skrillex"].chats[word] = 1
 	for hero in heroes:
 		heroes[hero].avg = float("{0:.2f}".format(float(heroes[hero].length) / float(heroes[hero].n_chats)))
 	return heroes
@@ -81,35 +81,39 @@ def create_list(tag_list, vekDic, vek):
 			Tg[t] += [(wd,n)]
 	return Tg
 
+##vekDic is the resulting dictionary from calling hero_stats
+## vek is top N words
+## Creates a dictionary ordered by hero name which contains pairs, first word, second count
+def create_hero_list(vekDic, vek):
+	Tg = {}
+	for h in Hero_Tag_dicts.hero_dict:
+		Tg[h] = []
+		for (c, wd) in vek:
+			n = 0
+			if wd in vekDic[h].chats:
+				n += vekDic[h].chats[wd]
+			Tg[h] += [(wd, n)]
+	return Tg
 
 ## Tg is the result of a call to create_list
-def tag_hero_report(Tg, vek):
-	print 'words =',
+def tag_hero_report(vekDic, Tg, vek):
+	print('words =')
 	for w in vek:
-		print w
+		print(w)
 	for t in Tg:
-		tot = sum([c for (wd, c) in Tg[t]])
+		tot = vekDic[t]
 		rtz = []
 		for (wd, cnt) in Tg[t]:
 			rt = str(float(cnt)/float(tot))[1:5]
 			if len(rt) == 2:
 				rt+= '0'
 			rtz += [rt]
-		print rtz 
-		print t
-		print 'N =', tot
-	print '---------------------------'
+		print(rtz)
+		print(t)
+		print('N =', tot)
+	print('---------------------------')
 
-##Basically same as hero_stats ... maybe there's a better way to do this, then?
-###STILL BROKEN!!!
-# def tag_stats: 
-# 	for t,h in tag_dict.items():
-# 		if t not in length_by_tag:
-# 			length_by_tag[t] = 0
-# 		if t not in chats_by_tag:
-# 			chats_by_tag[t] = 0
-# 	for hero in h:
-# 		if t not in length_by_tag:
-# 			length_by_tag[t] = length_by_hero[hero]
-# 		if t not in chats_by_tag:
-# 			chats_by_tag[t] = chats_by_hero[hero]
+def percents_hero(Tg, vek):
+	for t in Tg:
+		print(t)
+		pct = str(float(cnt)/float(tot))
