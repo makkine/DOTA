@@ -42,7 +42,7 @@ def fill_game_entries(folders):
                     ### this really sucks but I can't think of a better way to do it :(
                     if aslist[0] == 'chat':
                         if aslist[2] not in game_entries[filename]:
-                            game_entries[filename][aslist[2]] = Bilingual.Player(filename, aslist[2], {}, {'eng': 0, 'spn': 0, 'dota': 0, 'uncat': 0}, "nolang")
+                            game_entries[filename][aslist[2]] = Bilingual.Player(filename, aslist[2], {}, {'eng': 0, 'spn': 0, 'dota': 0, 'uncat': 0}, "nolang", Hero_Tag_dicts.create_type(aslist[2]))
                         else:
                             game_entries[filename][aslist[2]].c[aslist[1]] = aslist[3]
     return game_entries
@@ -108,7 +108,7 @@ def main(argv):
     dota_lang_entries = Bilingual.get_players(entries, 'dota')
 
     #Prints out instances of code-switching w/in the same line
-    Bilingual.single_line_switch(total_lang_entries)
+    #Bilingual.single_line_switch(total_lang_entries)
 
     ##Totals
     speaker_counts = Bilingual.get_total_speaker_count(entries)
@@ -280,18 +280,25 @@ def main(argv):
     #################
     ## TAG REPORTS ##
     #################
-    top_N = 18
+    top_N = 10
     total_dict = Stats.find_top_N_words(total_lang_entries, top_N, "total")
-    tag_list = ['carry', 'disabler', 'durable', 'escape', 'initiator', 'jungler',  'melee',  'nuker', 'pusher', 'ranged', 'support']
-    insults = ['ez', 'report', 'noob', 'rata', 'asco', 'izi', 'ratas', 'noobs', 'peru', 'bitch', 'troll', 'dbag', 'puta', 'trash', 'gay', 'peruvian', 'suck', 'perra', 'stfu', 'reprot', 'reported', 'basura', 'caca', 'rat', 'retarded']
-    tag_lst = hero.create_list(tag_list, h_stats, insults)
-    hero_lst = hero.create_hero_list(h_stats, insults)
-    print('this is the tag report')
-    hero.tag_hero_report(tag_lst, insults)
-    print('this is the hero report')
-    hero.tag_hero_report(hero_lst, insults)
-    print('Total messages')
-    print(h_stats["npc_dota_hero_Skrillex"].n_chats)
+    # tag_list = ['carry', 'disabler', 'durable', 'escape', 'initiator', 'jungler',  'melee',  'nuker', 'pusher', 'ranged', 'support']
+    # insults = ['ez', 'report', 'noob', 'rata', 'asco', 'izi', 'ratas', 'noobs', 'peru', 'bitch', 'troll', 'dbag', 'puta', 'trash', 'gay', 'peruvian', 'suck', 'perra', 'stfu', 'reprot', 'reported', 'basura', 'caca', 'rat', 'retarded']
+    # tag_lst = hero.create_list(tag_list, h_stats, insults)
+    # hero_lst = hero.create_hero_list(h_stats, insults)
+    # print('this is the tag report')
+    # hero.tag_hero_report(tag_lst, insults)
+    # print('this is the hero report')
+    # hero.tag_hero_report(hero_lst, insults)
+    # print('Total messages')
+    # print(h_stats["npc_dota_hero_Skrillex"].n_chats)
+
+    ##########
+    ## CSV ###
+    ##########
+    text_file = open("Stats.txt", "w")
+    text_file.write(Stats.csv(entries, total_dict))
+    text_file.close()
 
 
 

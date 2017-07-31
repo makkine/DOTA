@@ -11,12 +11,14 @@ english = 'english'
 #how many words in a given language were said by that player, in the form
 #[English, Spanish, DoTA, uncategorized]
 class Player():
-    def __init__(self, g, n, chat, lang_profile, l):
+    def __init__(self, g, n, chat, lang_profile, l, t):
       self.game = g #game of hero
       self.name = n
       self.c = chat #Dict of chats. Tag is timestamp, content is chat content
       self.lp = lang_profile 
       self.lang = l #Language probably spoken by this player
+      self.type = t #list consisting of three tags, gender, type (support/carry/none), and
+                     # difficulty rating
 
 
 ## Prints out all instances of code-switching w/in the same line. Honestly I 
