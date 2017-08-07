@@ -48,10 +48,14 @@ def single_line_switch(entries):
 
 ##Given a chat said by a hero, modifies that hero's lang_profile according to
 #What is contained in chat
-def create_lang_profiles(hero, chat):
-  newlist = chat.strip().split(' ')
-  newlist = [x.strip("''") for x in newlist]
-  for word in newlist:
+##NOTE: CREATE STH TO PROPERLY CATEGORIZE THIRD LANG. SPEAKERS
+def create_lang_profiles(hero, chats):
+  bigchat = []
+  for chat in chats:
+    newlist = chats[chat].strip().split(' ')
+    newlist = [x.strip("''") for x in newlist]
+    bigchat += newlist
+  for word in bigchat:
     if word.lower() not in Lang_dicts.lang_index:
       hero.lp['uncat'] += 1
     else:
@@ -64,13 +68,17 @@ def create_lang_profiles(hero, chat):
         hero.lp['dota'] += 1
       else:
         hero.lp['uncat'] += 1
-  ##Should go in own function
+  hero_lang(hero)
+
+
+##changes hero languuage profile according to LPs created
+def hero_lang(hero):
   if hero.lp['spn'] > 0:
     if hero.lp['eng'] > 0:
-      if hero.lp['spn'] > 3:
+      if hero.lp['spn'] > 2:
         if hero.lp['eng'] > 4:
           hero.lang = "bilingual"
-        else: 
+        else:
           hero.lang = "spn"
       if hero.lp['eng'] > 4:
         #### PRINTS ENG GAMES W SPANISH IN THEM
@@ -78,7 +86,7 @@ def create_lang_profiles(hero, chat):
         hero.lang = "eng"
       else:
         hero.lang = "bilingual"
-    else: 
+    else:
       hero.lang = "spn"
   elif hero.lp["eng"] > 0:
     hero.lang = "eng"
@@ -86,8 +94,6 @@ def create_lang_profiles(hero, chat):
     hero.lang = "dota"
   elif hero.lp["uncat"] > 0:
     hero.lang = "unknown"
-
-
 
 #Gets total word count by language
 def get_word_totals(entries):

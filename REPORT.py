@@ -9,7 +9,7 @@ import time
 import sys
 import hero
 import getopt
-import prestige
+
 
 begin_millis = int(round(time.time() * 1000))
 
@@ -50,8 +50,7 @@ def fill_game_entries(folders):
 def lang_profiles(entries):
     for game in entries:
         for hero in entries[game]:
-            for chat in entries[game][hero].c:
-                Bilingual.create_lang_profiles(entries[game][hero], entries[game][hero].c[chat])
+            Bilingual.create_lang_profiles(entries[game][hero], entries[game][hero].c)
 
 ### This is a function that looks in various dictionaries (English monolingual 
 ## and Spanish monolingual). You put the word you want to search for in this form
@@ -202,20 +201,20 @@ def main(argv):
     #####################
     # This section of reporting gives you the most frequent words for each
     # category of speaker Total, English, Spanish, bilingual, Dota
-    # top_N = 1000
-    # print('DATA FOR ALL SPEAKERS')
-    # print('cutoff N =',top_N)
-    # def print_top_words(lang_entries, top_N, lang):
-    #   vek = Stats.find_top_N_words(lang_entries, top_N, lang)
-    #   for(w, c) in vek:
-    #     sys.stdout.write("('")
-    #     sys.stdout.write(str(c))
-    #     sys.stdout.write("', ")
-    #     sys.stdout.write(str(w))
-    #     sys.stdout.write(") ")
+    top_N = 1000
+    print('DATA FOR ALL SPEAKERS')
+    print('cutoff N =',top_N)
+    def print_top_words(lang_entries, top_N, lang):
+      vek = Stats.find_top_N_words(lang_entries, top_N, lang)
+      for(w, c) in vek:
+        sys.stdout.write("('")
+        sys.stdout.write(str(c))
+        sys.stdout.write("', ")
+        sys.stdout.write(str(w))
+        sys.stdout.write(") ")
     # # NOTE: Third parameter is the full name of the lang, not "spn", "eng", etc.
-    # print('Top words in English:')
-    # print_top_words(total_lang_entries, top_N, "total")
+    print('Top words in English:')
+    print_top_words(total_lang_entries, top_N, "total")
 
     ####################
     ## CHAT PRINTING ###
@@ -293,12 +292,19 @@ def main(argv):
     # print('Total messages')
     # print(h_stats["npc_dota_hero_Skrillex"].n_chats)
 
-    ##########
-    ## CSV ###
-    ##########
-    text_file = open("Stats.txt", "w")
-    text_file.write(Stats.csv(entries, total_dict))
-    text_file.close()
+    ##############################
+    ## CSV  - Player by player ###
+    ##############################
+    # text_file = open("Stats.txt", "w")
+    # text_file.write(Stats.csv(entries, total_dict))
+    # text_file.close()
+    #
+    # ########################
+    # ## CSV - game by game ##
+    # ########################
+    # game_text = open("Stats_game.txt", "w")
+    # game_text.write(Stats.csv_game(entries, total_dict))
+    # game_text.close()
 
 
 
