@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 import Hero_Tag_dicts
+import sys
 import Lang_dicts
 import nltk
 from nltk.stem.snowball import SpanishStemmer
@@ -43,11 +46,11 @@ class Lang_Dictionary():
 ##players must be players that speak language
 def find_top_N_words(lang_entries, top_N, lang):
     dictionary = Lang_Dictionary({}, lang)
-    language = {'eng': 0, 'spn': 0, 'other': 0, 'tot': 0}
     for player in lang_entries:
         for chat in player.c:
+            language = {'eng': 0, 'spn': 0, 'other': 0, 'tot': 0}
             sentence = player.c[chat]
-            newlist = chat.strip().split(' ')
+            newlist = player.c[chat].strip().split(' ')
             newlist = [x.strip("''") for x in newlist]
             for word in newlist:
                 language['tot'] += 1
@@ -55,20 +58,23 @@ def find_top_N_words(lang_entries, top_N, lang):
                     language['other'] += 1
                 else:
                     word = Lang_dicts.lang_index[word.lower()]
-                    if word == english:
+                    if word == "english":
                         language['eng'] += 1
-                    elif word == spanish:
+                    elif word == "spanish":
                         language['spn'] += 1
                     else:
-                        hero.lp['other'] += 1
-            if language['other'] < language['spn'] + language['eng']:
-                if language['spn'] > language['eng']:
-                    stemmer = SpanishStemmer()
-                else:
-                    stemmer = EnglishStemmer()
-                sentence = stemmer.stem(sentence)
+                        language['other'] += 1
+            if language['other'] < 2 * (language['spn'] + language['eng']):
+               print(sentence)
+               if language['spn'] > language['eng']:
+                   print("SPANISH")
+                   stemmer = SpanishStemmer()
+               else:
+                   print("ENGLISH")
+                   stemmer = EnglishStemmer()
             aslist = []
             aslist += sentence
+            sentence =""
             j = ''.join(aslist)
             words = j.split(' ')
             for line in words:
@@ -76,10 +82,14 @@ def find_top_N_words(lang_entries, top_N, lang):
                 line = line.replace('""', '')
                 line = line.replace('"', '')
                 if len(line) > 0:
+                    if language["other"] < 2 * (language['spn'] + language["eng"]):
+                        sentence += stemmer.stem(line.encode(sys.stdout.encoding, errors = 'replace')) + " "
+                        print(sentence)
                     ##INEFFICIENT - looking through dictionary each time?
                     if line.lower() not in dictionary.d:
                         dictionary.d[line.lower()] = 0
                     dictionary.d[line.lower()] += 1
+
     ###wthCounts is a list of the word and its count
     wthCounts = []
     for(w,c) in dictionary.d.iteritems():

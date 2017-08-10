@@ -1,6 +1,8 @@
 import Hero_Tag_dicts
 import Lang_dicts
 import Stats
+from langdetect import detect_langs
+from langdetect import DetectorFactory
 dota = 'dota'
 spanish = 'spanish'
 unclear = 'unclear'
@@ -19,6 +21,14 @@ class Player():
       self.lang = l #Language probably spoken by this player
       self.type = t #list consisting of three tags, gender, type (support/carry/none), and
                      # difficulty rating
+
+def detect(entries):
+  DetectorFactory.seed = 0
+  for game in entries:
+    for player in entries[game]:
+      for chat in entries[game][player].c:
+        print entries[game][player].c[chat]
+        print(detect_langs(entries[game][player].c[chat]))
 
 
 ## Prints out all instances of code-switching w/in the same line. Honestly I 
@@ -75,17 +85,7 @@ def create_lang_profiles(hero, chats):
 def hero_lang(hero):
   if hero.lp['spn'] > 0:
     if hero.lp['eng'] > 0:
-      if hero.lp['spn'] > 2:
-        if hero.lp['eng'] > 4:
-          hero.lang = "bilingual"
-        else:
-          hero.lang = "spn"
-      if hero.lp['eng'] > 4:
-        #### PRINTS ENG GAMES W SPANISH IN THEM
-        ##print(hero.game + " " +  hero.name)
-        hero.lang = "eng"
-      else:
-        hero.lang = "bilingual"
+      hero.lang = "bilingual"
     else:
       hero.lang = "spn"
   elif hero.lp["eng"] > 0:

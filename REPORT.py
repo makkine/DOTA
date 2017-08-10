@@ -11,6 +11,11 @@ import hero
 import getopt
 
 
+
+
+####FIX TOP WORDS ONCE LANG DETECTION METHOD WORKS
+
+
 begin_millis = int(round(time.time() * 1000))
 
 #Command line stuff to code:
@@ -107,7 +112,7 @@ def main(argv):
     dota_lang_entries = Bilingual.get_players(entries, 'dota')
 
     #Prints out instances of code-switching w/in the same line
-    #Bilingual.single_line_switch(total_lang_entries)
+    Bilingual.single_line_switch(total_lang_entries)
 
     ##Totals
     speaker_counts = Bilingual.get_total_speaker_count(entries)
@@ -143,6 +148,8 @@ def main(argv):
     biling_freq_spn = Stats.find_percentage('spn', biling_freq)
 
     h_stats = hero.hero_stats(entries)
+
+    Bilingual.detect(entries)
 
     ##############
     # SPEAKER INFO
