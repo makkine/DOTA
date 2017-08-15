@@ -23,7 +23,6 @@ h_tags = ['1', '2', '3',
 difficulty_tags = ['1', '2', '3']
 gender_tags = ['female', 'male', 'neuter']
 skill_tags = ['agi', 'int', 'str']
-<<<<<<< HEAD
 
 
 hero_dict = {}

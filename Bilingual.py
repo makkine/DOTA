@@ -1,8 +1,6 @@
 import Hero_Tag_dicts
 import Lang_dicts
 import Stats
-from langdetect import detect_langs
-from langdetect import DetectorFactory
 dota = 'dota'
 spanish = 'spanish'
 unclear = 'unclear'
