@@ -9,7 +9,12 @@ import time
 import sys
 import hero
 import getopt
-import prestige
+
+
+
+
+####FIX TOP WORDS ONCE LANG DETECTION METHOD WORKS
+
 
 begin_millis = int(round(time.time() * 1000))
 
@@ -42,7 +47,7 @@ def fill_game_entries(folders):
                     ### this really sucks but I can't think of a better way to do it :(
                     if aslist[0] == 'chat':
                         if aslist[2] not in game_entries[filename]:
-                            game_entries[filename][aslist[2]] = Bilingual.Player(filename, aslist[2], {}, {'eng': 0, 'spn': 0, 'dota': 0, 'uncat': 0}, "nolang")
+                            game_entries[filename][aslist[2]] = Bilingual.Player(filename, aslist[2], {}, {'eng': 0, 'spn': 0, 'dota': 0, 'uncat': 0}, "nolang", Hero_Tag_dicts.create_type(aslist[2]))
                         else:
                             game_entries[filename][aslist[2]].c[aslist[1]] = aslist[3]
     return game_entries
@@ -50,8 +55,7 @@ def fill_game_entries(folders):
 def lang_profiles(entries):
     for game in entries:
         for hero in entries[game]:
-            for chat in entries[game][hero].c:
-                Bilingual.create_lang_profiles(entries[game][hero], entries[game][hero].c[chat])
+            Bilingual.create_lang_profiles(entries[game][hero], entries[game][hero].c)
 
 ### This is a function that looks in various dictionaries (English monolingual 
 ## and Spanish monolingual). You put the word you want to search for in this form
@@ -145,6 +149,8 @@ def main(argv):
 
 
 
+    Bilingual.detect(entries)
+
     ##############
     # SPEAKER INFO
     ##############
@@ -202,20 +208,20 @@ def main(argv):
     #####################
     # This section of reporting gives you the most frequent words for each
     # category of speaker Total, English, Spanish, bilingual, Dota
-    # top_N = 1000
-    # print('DATA FOR ALL SPEAKERS')
-    # print('cutoff N =',top_N)
-    # def print_top_words(lang_entries, top_N, lang):
-    #   vek = Stats.find_top_N_words(lang_entries, top_N, lang)
-    #   for(w, c) in vek:
-    #     sys.stdout.write("('")
-    #     sys.stdout.write(str(c))
-    #     sys.stdout.write("', ")
-    #     sys.stdout.write(str(w))
-    #     sys.stdout.write(") ")
+    top_N = 1000
+    print('DATA FOR ALL SPEAKERS')
+    print('cutoff N =',top_N)
+    def print_top_words(lang_entries, top_N, lang):
+      vek = Stats.find_top_N_words(lang_entries, top_N, lang)
+      for(w, c) in vek:
+        sys.stdout.write("('")
+        sys.stdout.write(str(c))
+        sys.stdout.write("', ")
+        sys.stdout.write(str(w))
+        sys.stdout.write(") ")
     # # NOTE: Third parameter is the full name of the lang, not "spn", "eng", etc.
-    # print('Top words in English:')
-    # print_top_words(total_lang_entries, top_N, "total")
+    print('Top words in English:')
+    print_top_words(total_lang_entries, top_N, "total")
 
     ####################
     ## CHAT PRINTING ###
@@ -280,22 +286,30 @@ def main(argv):
     #################
     ## TAG REPORTS ##
     #################
-   
-    top_N = 18
-    total_dict = Stats.find_top_N_words(total_lang_entries, top_N, "total")
-    tag_list = ['carry', 'disabler', 'durable', 'escape', 'initiator', 'jungler',  'melee',  'nuker', 'pusher', 'ranged', 'support']
-    insults = ['ez', 'report', 'noob', 'rata', 'asco', 'izi', 'ratas', 'noobs', 'peru', 'bitch', 'troll', 'dbag', 'puta', 'trash', 'gay', 'peruvian', 'suck', 'perra', 'stfu', 'reprot', 'reported', 'basura', 'caca', 'rat', 'retarded']
-    emoticons = [':(', ':)', 'xd', ':c', ':d', ':v',':o', ':/', ':p']
-    h_stats = hero.hero_stats(entries)
-    t_stats = hero.hero_stats(entries, tag_list)
-    tag_lst = hero.create_list_wclass(h_stats, emoticons, tag_list)
-    hero_lst = hero.create_list_wclass(h_stats, emoticons)
-    print('this is the tag report')
-    hero.percentage_report(t_stats, tag_lst, emoticons)
-    print('this is the hero report')
-    hero.percentage_report(h_stats, hero_lst, emoticons)
-    print('Total messages')
-    print(h_stats["npc_dota_hero_Skrillex"].n_chats)
+    # tag_list = ['carry', 'disabler', 'durable', 'escape', 'initiator', 'jungler',  'melee',  'nuker', 'pusher', 'ranged', 'support']
+    # insults = ['ez', 'report', 'noob', 'rata', 'asco', 'izi', 'ratas', 'noobs', 'peru', 'bitch', 'troll', 'dbag', 'puta', 'trash', 'gay', 'peruvian', 'suck', 'perra', 'stfu', 'reprot', 'reported', 'basura', 'caca', 'rat', 'retarded']
+    # tag_lst = hero.create_list(tag_list, h_stats, insults)
+    # hero_lst = hero.create_hero_list(h_stats, insults)
+    # print('this is the tag report')
+    # hero.tag_hero_report(tag_lst, insults)
+    # print('this is the hero report')
+    # hero.tag_hero_report(hero_lst, insults)
+    # print('Total messages')
+    # print(h_stats["npc_dota_hero_Skrillex"].n_chats)
+
+    ##############################
+    ## CSV  - Player by player ###
+    ##############################
+    # text_file = open("Stats.txt", "w")
+    # text_file.write(Stats.csv(entries, total_dict))
+    # text_file.close()
+    #
+    # ########################
+    # ## CSV - game by game ##
+    # ########################
+    # game_text = open("Stats_game.txt", "w")
+    # game_text.write(Stats.csv_game(entries, total_dict))
+    # game_text.close()
 
 
 

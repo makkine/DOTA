@@ -23,27 +23,28 @@ h_tags = ['1', '2', '3',
 difficulty_tags = ['1', '2', '3']
 gender_tags = ['female', 'male', 'neuter']
 skill_tags = ['agi', 'int', 'str']
+<<<<<<< HEAD
 
 
 hero_dict = {}
 hero_dict['npc_dota_hero_antimage'] = ['antimage','male', 'melee', 'agi', 'carry', 'escape', 'nuker', '1']
-hero_dict['npc_dota_hero_axe'] = ['axe','male', 'melee', 'str', 'initiator', 'durable', 'disabler', 'jungler']
+hero_dict['npc_dota_hero_axe'] = ['axe','male', 'melee', 'str', 'initiator', 'durable', 'disabler', 'jungler', '1']
 hero_dict['npc_dota_hero_bane'] = ['bane','male', 'ranged', 'int', 'support', 'disabler', 'nuker', 'durable', '2']
 hero_dict['npc_dota_hero_bloodseeker'] = ['bloodseeker','male', 'melee', 'agi', 'carry', 'disabler', 'nuker', 'jungler', 'initiator', '1']
 hero_dict['npc_dota_hero_crystal_maiden'] = ['crystal_maiden', 'female', 'ranged', 'int', 'support', 'disabler', 'nuker', 'jungler', '1']
 hero_dict['npc_dota_hero_drow_ranger'] = ['drow_ranger', 'female', 'ranged', 'agi', 'carry', 'disabler', 'pusher', '1']
-hero_dict['npc_dota_hero_earthshaker'] = ['earthshaker','male', 'melee', 'str', 'initiator', 'support', 'disabler', 'nuker']
+hero_dict['npc_dota_hero_earthshaker'] = ['earthshaker','male', 'melee', 'str', 'initiator', 'support', 'disabler', 'nuker', '2']
 hero_dict['npc_dota_hero_juggernaut'] = ['juggernaut', 'male', 'melee', 'agi', 'carry', 'pusher', 'escape', '1']
 hero_dict['npc_dota_hero_mirana'] = ['mirana', 'female', 'ranged', 'agi', 'carry', 'escape', 'nuker', 'support', 'disabler', '2']
 hero_dict['npc_dota_hero_nevermore'] = ['nevermore', 'male', 'ranged', 'agi', 'carry', 'nuker', '2']
 hero_dict['npc_dota_hero_morphling'] = ['morphling','male', 'ranged', 'agi', 'carry', 'escape', 'nuker', 'durable', 'disabler', '3']
 hero_dict['npc_dota_hero_phantom_lancer'] = ['phantom_lancer', 'male', 'melee', 'agi', 'carry', 'escape', 'nuker', 'pusher', '2']
 hero_dict['npc_dota_hero_puck'] = ['puck','female', 'ranged', 'int', 'initiator', 'disabler', 'nuker', 'escape', '2']
-hero_dict['npc_dota_hero_pudge'] = ['pudge', 'male', 'melee', 'str', 'initiator', 'durable', 'disabler', 'nuker']
+hero_dict['npc_dota_hero_pudge'] = ['pudge', 'male', 'melee', 'str', 'initiator', 'durable', 'disabler', 'nuker', '2']
 hero_dict['npc_dota_hero_razor'] = ['razor','male', 'ranged', 'agi', 'carry', 'durable', 'nuker', 'pusher', '1']
-hero_dict['npc_dota_hero_sand_king'] = ['sand_king', 'male', 'melee', 'str', 'initiator', 'escape', 'disabler', 'nuker', 'jungler']
+hero_dict['npc_dota_hero_sand_king'] = ['sand_king', 'male', 'melee', 'str', 'initiator', 'escape', 'disabler', 'nuker', 'jungler', '2']
 hero_dict['npc_dota_hero_storm_spirit'] = ['storm_spirit','male', 'ranged', 'int', 'carry', 'disabler', 'nuker', 'initiator', 'escape', '3']
-hero_dict['npc_dota_hero_sven'] = ['sven', 'male', 'melee', 'str', 'carry', 'durable', 'disabler', 'initiator', 'nuker']
+hero_dict['npc_dota_hero_sven'] = ['sven', 'male', 'melee', 'str', 'carry', 'durable', 'disabler', 'initiator', 'nuker', '1']
 hero_dict['npc_dota_hero_tiny'] = ['tiny', 'male', 'melee', 'str', 'initiator', 'carry', 'disabler', 'nuker', 'pusher', 'durable']
 hero_dict['npc_dota_hero_vengefulspirit'] = ['vengefulspirit', 'female', 'ranged', 'agi', 'support', 'escape', 'nuker', 'initiator', 'disabler', '1']
 hero_dict['npc_dota_hero_windrunner'] = ['windrunner', 'female', 'ranged', 'int', 'support', 'disabler', 'nuker', 'carry', 'escape', '2']
@@ -140,8 +141,6 @@ hero_dict['npc_dota_hero_skywrath_mage'] = ['skywrath_mage', 'male', 'ranged', '
 hero_dict['npc_dota_hero_terrorblade'] = ['terrorblade', 'male', 'melee', 'agi', 'carry', 'pusher', 'nuker', '2']
 hero_dict['npc_dota_hero_monkey_king'] = ['monkey_king', 'male', 'melee', 'agi', 'initiator', 'carry', 'escape', 'disabler', '2']
 
-regular_hero_names = ['winter_wyvern', 'mirana', 'batrider', 'oracle', 'sven', 'wisp', 'obsidian_destroyer', 'shredder', 'magnataur', 'necrolyte', 'shadow_demon', 'vengefulspirit', 'skywrath_mage', 'skeleton_king', 'naga_siren', 'doom_bringer', 'treant', 'venomancer', 'abyssal_underlord', 'ursa', 'huskar', 'bounty_hunter', 'elder_titan', 'templar_assassin', 'death_prophet', 'drow_ranger', 'pugna', 'lycan', 'life_stealer', 'morphling', 'monkey_king', 'leshrac', 'antimage', 'enigma', 'medusa', 'razor', 'tiny', 'chen', 'bloodseeker', 'undying', 'shadow_shaman', 'bane', 'lone_druid', 'centaur', 'keeper_of_the_light', 'enchantress', 'rubick', 'phantom_lancer', 'tinker', 'sniper', 'lich', 'puck', 'invoker', 'dark_seer', 'lion', 'kunkka', 'arc_warden', 'nyx_assassin', 'broodmother', 'viper', 'luna', 'meepo', 'axe', 'earthshaker', 'techies', 'juggernaut', 'visage', 'ancient_apparition', 'chaos_knight', 'spirit_breaker', 'beastmaster', 'legion_commander', 'abaddon', 'jakiro', 'ember_spirit', 'alchemist', 'pudge', 'omniknight', 'terrorblade', 'slark', 'warlock', 'storm_spirit', 'troll_warlord', 'clinkz', 'night_stalker', 'slardar', 'queenofpain', 'zuus', 'dazzle', 'dragon_knight', 'phantom_assassin', 'riki', 'tusk', 'spectre', 'bristleback', 'tidehunter', 'witch_doctor', 'sand_king', 'lina', 'phoenix', 'weaver', 'gyrocopter', 'crystal_maiden', 'brewmaster', 'silencer', 'earth_spirit', 'disruptor', 'faceless_void', 'ogre_magi']
-
 hero_names = ['npc_dota_hero_rattletrap', 'npc_dota_hero_furion', 'npc_dota_hero_nevermore', 'npc_dota_hero_winter_wyvern', 'npc_dota_hero_mirana', 'npc_dota_hero_batrider', 'npc_dota_hero_windrunner', 'npc_dota_hero_oracle', 
 			'npc_dota_hero_sven', 'npc_dota_hero_shadow_demon', 'npc_dota_hero_vengefulspirit', 'npc_dota_hero_skywrath_mage', 'npc_dota_hero_skeleton_king', 'npc_dota_hero_naga_siren', 'npc_dota_hero_doom_bringer', 
 			'npc_dota_hero_treant', 'npc_dota_hero_venomancer', 'npc_dota_hero_abyssal_underlord', 'npc_dota_hero_ursa', 'npc_dota_hero_huskar', 'npc_dota_hero_bounty_hunter', 'npc_dota_hero_elder_titan',
@@ -158,6 +157,8 @@ hero_names = ['npc_dota_hero_rattletrap', 'npc_dota_hero_furion', 'npc_dota_hero
 			 'npc_dota_hero_bristleback', 'npc_dota_hero_tidehunter', 'npc_dota_hero_witch_doctor', 'npc_dota_hero_sand_king', 'npc_dota_hero_lina', 'npc_dota_hero_phoenix', 'npc_dota_hero_weaver', 'npc_dota_hero_gyrocopter', 
 			 'npc_dota_hero_crystal_maiden', 'npc_dota_hero_brewmaster', 'npc_dota_hero_necrolyte', 'npc_dota_hero_silencer', 'npc_dota_hero_earth_spirit', 'npc_dota_hero_disruptor', 'npc_dota_hero_faceless_void',
 			 'npc_dota_hero_ogre_magi', 'npc_dota_hero_obsidian_destroyer', 'npc_dota_hero_magnataur', 'npc_dota_hero_shredder', 'npc_dota_hero_wisp']
+
+regular_hero_names = ['winter_wyvern', 'mirana', 'batrider', 'oracle', 'sven', 'shadow_demon', 'vengefulspirit', 'skywrath_mage', 'skeleton_king', 'naga_siren', 'doom_bringer', 'treant', 'venomancer', 'abyssal_underlord', 'io', 'ursa', 'huskar', 'bounty_hunter', 'elder_titan', 'templar_assassin', 'death_prophet', 'drow_ranger', 'outworld devourer', 'shadow fiend', 'pugna', 'lycan', 'life_stealer', 'morphling', 'monkey_king', 'timbersaw', 'leshrac', 'antimage', 'enigma', 'medusa', 'razor', 'tiny', 'chen', 'bloodseeker', 'undying', 'shadow_shaman', 'bane', 'lone_druid', 'centaur warrunner', 'keeper_of_the_light', 'enchantress', 'rubick', 'necrophos', 'magnus', 'phantom_lancer', 'tinker', 'sniper', 'lich', 'puck', 'invoker', 'dark_seer', 'clockwerk', 'lion', 'kunkka', 'arc_warden', 'nyx_assassin', 'broodmother', 'viper', 'luna', 'meepo', 'axe', 'earthshaker', 'techies', 'juggernaut', 'visage', 'natures prophet', 'ancient_apparition', 'chaos_knight', 'spirit_breaker', 'beastmaster', 'legion_commander', 'abaddon', 'jakiro', 'ember_spirit', 'alchemist', 'pudge', 'omniknight', 'terrorblade', 'slark', 'warlock', 'storm_spirit', 'troll_warlord', 'clinkz', 'night_stalker', 'slardar', 'queenofpain', 'zeus', 'dazzle', 'dragon_knight', 'phantom_assassin', 'windranger', 'riki', 'tusk', 'spectre', 'bristleback', 'tidehunter', 'witch_doctor', 'sand_king', 'lina', 'phoenix', 'weaver', 'gyrocopter', 'crystal_maiden', 'brewmaster', 'silencer', 'earth_spirit', 'disruptor', 'faceless_void', 'ogre_magi']
 
 abbreviated_hero_names = ['ww', 'sd', 'venge', 'skywrath', 'wk', 'naga', 'doom', 'veno', 'abyssal', 'wisp', 'bh', 'bounty', 'titan', 'ta', 'dp', 'drow', 'od', 'sf', 'shadow', 'ls', 'morph', 'mk', 'monkey', 'timer', 'saw', 'am', 'dusa', 'tony', 'bs', 'blood', 'ss', 'cent', 'kotl', 'ench', 'mag', 'pl', 'ds', 'clock', 'arc', 'nyx', 'brood', 'es', 'jugg', 'tb', 'np', 'natures', 'aa', 'ck', 'chaos', 'sb', 'lc', 'abby', 'jak', 'alch', 'omni', 'troll', 'ns', 'qop', 'dk', 'pa', 'tide', 'wd', 'sk', 'gyro', 'cm', 'crystal', 'brew', 'faceless', 'ogre']
 
@@ -184,4 +185,20 @@ for t in h_tags:
     if t in tag_list:
       tag_dict[t] += [h]
 
-      
+
+      # Creates a list [gender, support/carry/none, difficulty] for a given hero
+def create_type(hero):
+    list = ["", "", ""]
+    if hero != "null":
+        list[0] = hero_dict[hero][1]
+        list[2] = hero_dict[hero][len(hero_dict[hero]) - 1]
+        if "carry" in hero_dict[hero]:
+            if "support" in hero_dict[hero]:
+                list[1] = "none"
+            else:
+                list[1] = "carry"
+        elif "support" in hero_dict[hero]:
+            list[1] = "support"
+        else:
+            list[1] = "none"
+    return list
