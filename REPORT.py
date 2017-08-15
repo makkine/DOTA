@@ -108,7 +108,7 @@ def main(argv):
     dota_lang_entries = Bilingual.get_players(entries, 'dota')
 
     #Prints out instances of code-switching w/in the same line
-    Bilingual.single_line_switch(total_lang_entries)
+    #Bilingual.single_line_switch(total_lang_entries)
 
     ##Totals
     speaker_counts = Bilingual.get_total_speaker_count(entries)
@@ -143,7 +143,7 @@ def main(argv):
     biling_freq_eng = Stats.find_percentage('eng', biling_freq)
     biling_freq_spn = Stats.find_percentage('spn', biling_freq)
 
-    h_stats = hero.hero_stats(entries)
+
 
     ##############
     # SPEAKER INFO
@@ -280,18 +280,23 @@ def main(argv):
     #################
     ## TAG REPORTS ##
     #################
+   
     top_N = 18
     total_dict = Stats.find_top_N_words(total_lang_entries, top_N, "total")
     tag_list = ['carry', 'disabler', 'durable', 'escape', 'initiator', 'jungler',  'melee',  'nuker', 'pusher', 'ranged', 'support']
     insults = ['ez', 'report', 'noob', 'rata', 'asco', 'izi', 'ratas', 'noobs', 'peru', 'bitch', 'troll', 'dbag', 'puta', 'trash', 'gay', 'peruvian', 'suck', 'perra', 'stfu', 'reprot', 'reported', 'basura', 'caca', 'rat', 'retarded']
-    tag_lst = hero.create_list(tag_list, h_stats, insults)
-    hero_lst = hero.create_hero_list(h_stats, insults)
+    emoticons = [':(', ':)', 'xd', ':c', ':d', ':v',':o', ':/', ':p']
+    h_stats = hero.hero_stats(entries)
+    t_stats = hero.hero_stats(entries, tag_list)
+    tag_lst = hero.create_list_wclass(h_stats, emoticons, tag_list)
+    hero_lst = hero.create_list_wclass(h_stats, emoticons)
     print('this is the tag report')
-    hero.tag_hero_report(tag_lst, insults)
+    hero.percentage_report(t_stats, tag_lst, emoticons)
     print('this is the hero report')
-    hero.tag_hero_report(hero_lst, insults)
+    hero.percentage_report(h_stats, hero_lst, emoticons)
     print('Total messages')
     print(h_stats["npc_dota_hero_Skrillex"].n_chats)
+
 
 
 
