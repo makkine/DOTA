@@ -45,11 +45,13 @@ def fill_game_entries(folders):
                 for line in onefile:
                     aslist = line.strip().split(',')
                     ### this really sucks but I can't think of a better way to do it :(
-                    if aslist[0] == 'chat':
+                    if aslist[0] == 'game_data':
+                        game_entries[filename]["time"] = aslist[2]
+                    elif aslist[0] == 'chat':
                         if aslist[2] not in game_entries[filename]:
-                            game_entries[filename][aslist[2]] = Bilingual.Player(filename, aslist[2], {}, {'eng': 0, 'spn': 0, 'dota': 0, 'uncat': 0}, "nolang", Hero_Tag_dicts.create_type(aslist[2]))
+                            game_entries[filename][aslist[2]] = Bilingual.Player(filename, aslist[2], {aslist[1]/game_entries[filename]["time"]: aslist[3]}, {'eng': 0, 'spn': 0, 'dota': 0, 'uncat': 0}, "nolang", Hero_Tag_dicts.create_type(aslist[2]))
                         else:
-                            game_entries[filename][aslist[2]].c[aslist[1]] = aslist[3]
+                            game_entries[filename][aslist[2]].c[aslist[1]/game_entries[filename]["time"]] = aslist[3]
     return game_entries
 
 def lang_profiles(entries):
